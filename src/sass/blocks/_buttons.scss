@@ -5,6 +5,7 @@
     border: none;
     color: #ffffff;
     font-size: 12px;
-    @include bold;
+    @include medium;
     background-color: $main-color;
+    text-transform: uppercase;
 }
