@@ -5,6 +5,6 @@
     border: none;
     color: #ffffff;
     font-size: 12px;
-    font-weight: 500;
+    @include bold;
     background-color: $main-color;
 }
