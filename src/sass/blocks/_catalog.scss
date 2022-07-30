@@ -1,0 +1,32 @@
+.catalog {
+    padding-bottom: 100px;
+    &__title {
+        text-align: center;
+        color: #0d0d0d;
+        @include bold;
+        font-size: 30px;
+    }
+    &__tabs {
+        margin-top: 70px;
+        list-style-type: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__tab {
+        text-transform: uppercase;
+        color: #6b6b6b;
+        @include medium;
+        text-align: center;
+        font-size: 18px;
+        line-height: 48px;
+        width: 220px;
+        height: 50px;
+        border: 2px solid #d0d0d0;
+        transform: skewX(-25deg);
+        margin: 0 5px;
+        div {
+            transform: skewX(25deg);  
+        }
+    }
+}
