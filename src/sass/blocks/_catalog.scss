@@ -12,6 +12,8 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        margin-bottom: 0px;
+        padding-left: 0px;
     }
     &__tab {
         text-transform: uppercase;
@@ -25,8 +27,82 @@
         border: 2px solid #d0d0d0;
         transform: skewX(-25deg);
         margin: 0 5px;
+        cursor: pointer;
+        transition: 0.5s all;
+        &:hover {
+            box-shadow: 3px 3px 20px $main-color;
+            border: none;
+        }
         div {
             transform: skewX(25deg);  
+        }
+        &_active {
+            color: #fff;
+            background-color: $main-color;
+            border: none;
+        }
+    }
+    &__content {
+        margin-top: 60px;
+        
+    }
+    &-item {
+        width: 300px;
+        min-height: 440px;
+        border: 2px solid #e8e8e8;
+        padding: 20px 20px 26px 20px;
+        &__img {
+            max-width: 100%;
+            height: 200px;
+            display: block;
+            margin: 0 auto;
+        }
+        &__subtitle {
+            margin-top: 20px;
+            color: #0d0d0d;
+            @include bold;
+            font-size: 16px;
+            text-align: center;
+        }
+        &__description {
+            margin-top: 16px;
+            text-align: center;
+            color: #0d0d0d;
+            @include light;
+            font-size: 14px;
+        }
+        &__link {
+            margin-top: 17px;
+            color: $main-color;
+            @include medium;
+            font-size: 14px;
+            text-decoration: underline;
+            text-align: center;
+            display: block;
+            &:hover {
+                color: $main-color;
+            }
+        }
+        hr {
+            margin-top: 19px;
+            margin-bottom: 21px;
+            border-bottom: none;
+            background-color: #e8e8e8;
+        }
+        &__footer {
+            display: flex;
+            justify-content: space-between;
+        }
+        &__old-price {
+            color: #555555;
+            @include light;
+            font-size: 14px;
+            text-decoration: line-through;
+        }
+        &__price {
+            color: #050505;
+            @include bold;
+            font-size: 20px;
         }
     }
 }
