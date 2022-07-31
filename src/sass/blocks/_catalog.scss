@@ -140,11 +140,11 @@
                 margin-left: 0px;
             }
             li {
+                position: relative;
                 color: #555555;
                 @include light;
                 font-size: 14px;
                 margin-bottom: 20px;
-                position: relative;
                 &:before {
                     content: '';
                     position: absolute;
@@ -167,6 +167,9 @@
             font-size: 14px;
             text-transform: uppercase;
             text-decoration: underline;
+            &:hover {
+                color: $main-color;
+            }
         }
     }
 }
