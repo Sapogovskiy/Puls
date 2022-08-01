@@ -1,4 +1,5 @@
 .overlay {
+    display: none;
     position: fixed;
     width: 100%;
     top: 0;
@@ -13,6 +14,37 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 380px;
-    height: 400px;
+    min-height: 400px;
     background-color: #f2f2f2;
+    padding: 38px 40px 40px 40px;
+    &__close {
+        position: absolute;
+        font-size: 40px;
+        top: 0;
+        line-height: 15px;
+        right: -40px;
+        width: 21px;
+        height: 21px;
+        color: $main-color;
+        cursor: pointer;
+    }
+    &__subtitle {
+        color: #0d0d0d;
+        @include bold;
+        font-size: 18px;
+        text-align: center;
+    }
+    &__descr {
+        color: #0d0d0d;
+        @include medium;
+        text-align: center;
+        font-size: 14px;
+    }
+    &_mini {
+        min-height: 140px;
+    }
+}
+
+#consultation, #order, #thanks {
+display: none;
 }
