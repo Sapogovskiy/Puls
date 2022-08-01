@@ -51,24 +51,34 @@ $(document).ready(function(){
         })
     });
 
-    $('#consultation-form').validate();
-    $('#consultation form').validate({
-        rules: {
-           name: "required",
-           phone: "required",
-           email: {
-            required: true,
-            email: true
-           }
-        },
-        messages: {
-            name: "Пожалуйста, введите свое имя!",
-            phone: "Введите свой номер телефона!",
-            email: {
-              required: "Введите свой email!",
-              email: "Неправельный адрес почты!"
-            }
-          }
-    });
-    $('#order form').validate();
+    function valideForms(form){
+        $(form).validate({
+            rules: {
+                name: {
+                 required: true,
+                 minlength: 2
+               },
+                phone: "required",
+                email: {
+                 required: true,
+                 email: true
+                }
+             },
+             messages: {
+                 name: {
+                     required: "Пожалуйста, введите свое имя!",
+                     minlength: jQuery.validator.format("Введите {0} символов!")
+                   },
+                 phone: "Введите свой номер телефона!",
+                 email: {
+                   required: "Введите свой email!",
+                   email: "Неправельный адрес почты!"
+                 }
+               }
+         });
+    };
+
+    valideForms('#consultation-form');
+    valideForms('#consultation form');
+    valideForms('#order form');
 });
