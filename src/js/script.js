@@ -1,20 +1,19 @@
 $(document).ready(function(){
     $('.carousel__inner').slick({
-        speed: 1500,
+        speed: 1200,
         adaptiveHeight: true,
-        prevArrow: '<button type="button" class="slick-prev"><img src="../icons/left.svg"></button>',
-        nextArrow: '<button type="button" class="slick-next"><img src="../icons/right.svg"></button>',
+        prevArrow: '<button type="button" class="slick-prev"><img src="icons/left.svg"></button>',
+        nextArrow: '<button type="button" class="slick-next"><img src="icons/right.svg"></button>',
         responsive: [
             {
                 breakpoint: 992,
                 settings: {
                     dots: true,
                     arrows: false
-                 }
+                }
             }
         ]
-        
-      });
+    });
 
       $('ul.catalog__tabs').on('click', 'li:not(.catalog__tab_active)', function() {
         $(this)
@@ -32,53 +31,72 @@ $(document).ready(function(){
         });
     };
 
-   toggleSlide('.catalog-item__link');
-   toggleSlide('.catalog-item__back');
+    toggleSlide('.catalog-item__link');
+    toggleSlide('.catalog-item__back');
 
-   //Modal
+    // Modal
 
-    $(' [data-modal=consultation]').on('click', function() {
+    $('[data-modal=consultation]').on('click', function() {
         $('.overlay, #consultation').fadeIn('slow');
     });
     $('.modal__close').on('click', function() {
         $('.overlay, #consultation, #thanks, #order').fadeOut('slow');
     });
-    
-    $('.button_mini').each(function (i) {
+
+    $('.button_mini').each(function(i) {
         $(this).on('click', function() {
-           $('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text());
-           $('.overlay, #order').fadeIn('slow');
+            $('#order .modal__descr').text($('.catalog-item__subtitle').eq(i).text());
+            $('.overlay, #order').fadeIn('slow');
         })
     });
 
-    function valideForms(form){
+    function validateForms(form){
         $(form).validate({
             rules: {
                 name: {
-                 required: true,
-                 minlength: 2
-               },
+                    required: true,
+                    minlength: 2
+                },
                 phone: "required",
                 email: {
-                 required: true,
-                 email: true
+                    required: true,
+                    email: true
                 }
-             },
-             messages: {
-                 name: {
-                     required: "Пожалуйста, введите свое имя!",
-                     minlength: jQuery.validator.format("Введите {0} символов!")
-                   },
-                 phone: "Введите свой номер телефона!",
-                 email: {
-                   required: "Введите свой email!",
-                   email: "Неправельный адрес почты!"
-                 }
-               }
-         });
+            },
+            messages: {
+                name: {
+                    required: "Пожалуйста, введите свое имя",
+                    minlength: jQuery.validator.format("Введите {0} символа!")
+                  },
+                phone: "Пожалуйста, введите свой номер телефона",
+                email: {
+                  required: "Пожалуйста, введите свою почту",
+                  email: "Неправильно введен адрес почты"
+                }
+            }
+        });
     };
 
-    valideForms('#consultation-form');
-    valideForms('#consultation form');
-    valideForms('#order form');
+    validateForms('#consultation-form');
+    validateForms('#consultation form');
+    validateForms('#order form');
+
+
+    $('input[name=phone]').mask("+7 (999) 999-99-99");
+
+    $('form').submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            type: "POST",
+            url: "mailer/smart.php",
+            data: $(this).serialize()
+        }).done(function() {
+            $(this).find("input").val("");
+            $('#consultation, #order').fadeOut();
+            $('.overlay, #thanks').fadeIn('slow');
+
+            $('form').trigger('reset');
+        });
+        return false;
+    });
 });
