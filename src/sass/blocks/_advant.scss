@@ -23,6 +23,15 @@
             margin: 0 auto;
             margin-bottom: 38px;
         }
+        &_icon {
+            animation-name: heartbeat;
+            animation-duration: 1s;
+            animation-timing-function: else;
+            -webkit-animation-iteration-count: infinite;
+            &:hover {
+                animation-play-state: paused;
+            }
+        }
         &_title {
             color: #0d0d0d;
             @include bold;
